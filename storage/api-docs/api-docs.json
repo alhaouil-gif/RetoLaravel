@@ -1,0 +1,126 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/profesor/{id}/horario": {
+            "get": {
+                "summary": "Obtener el horario de un profesor",
+                "operationId": "9cc4ce931c541f22a00a61a4d0f664ae",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del profesor",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Horario obtenido correctamente"
+                    },
+                    "401": {
+                        "description": "No autorizado"
+                    },
+                    "404": {
+                        "description": "Profesor no encontrado"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/reunion/{id}/estado": {
+            "patch": {
+                "tags": [
+                    "Reuniones"
+                ],
+                "summary": "Actualizar estado de la reunión",
+                "operationId": "actualizarEstadoReunion",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la reunión a actualizar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Estado de la reunión",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "estado"
+                                ],
+                                "properties": {
+                                    "estado": {
+                                        "description": "Estado al que se cambiará la reunión",
+                                        "type": "string",
+                                        "enum": [
+                                            "pendiente",
+                                            "aceptada",
+                                            "rechazada"
+                                        ]
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Estado de la reunión actualizado correctamente"
+                    },
+                    "400": {
+                        "description": "Solicitud incorrecta (estado no válido)"
+                    },
+                    "404": {
+                        "description": "Reunión no encontrada"
+                    },
+                    "401": {
+                        "description": "No autorizado"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Reuniones",
+            "description": "Reuniones"
+        }
+    ]
+}

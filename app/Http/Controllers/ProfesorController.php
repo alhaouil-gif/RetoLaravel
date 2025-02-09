@@ -52,4 +52,5 @@ class ProfesorController extends Controller
     return view('profesor.horarios', compact('tablaHorarios'));
 }
 
+
 }

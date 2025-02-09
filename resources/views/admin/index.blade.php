@@ -49,27 +49,28 @@
                         <i class="fas fa-pen"></i>
                     </a>
 
- 
+                    <!-- Verificar si el usuario tiene el rol de superadministrador -->
+                    @if(!$user->roles->contains('name', 'superadministrador'))
                     <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')                  
 
                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')">
                             <i class="fas fa-trash"></i>
-
                         </button>
                     </form>
- 
+                    @endif
                 </td>
             </tr>
             @endforeach
         </tbody>
-  
     </table>
 </div>
+
 </br>
 </br>
 </br>
+
 <!-- Paginación personalizada -->
 <div class="pagination-custom d-flex justify-content-center">
 
@@ -100,8 +101,6 @@
     <a href="{{ route('admin.dashboard') }}" class="btn" style="background-color: #3cb4e5; color: white;">Volver</a>
 </div>
 </div>
-
-
 
 @stop
 

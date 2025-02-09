@@ -82,5 +82,11 @@ return view('alumno.solicitar_reunion', compact('profesores'));
         return redirect()->route('profesor.reuniones')->with('success', 'Estado actualizado correctamente.');
     }
     
-    
+    public function modificarEstado(Request $request, $id)
+    {
+        $reunion = Reunion::findOrFail($id);
+        $reunion->estado = $request->estado;
+        $reunion->save();
+        return response()->json($reunion);
+    }
 }

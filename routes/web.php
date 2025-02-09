@@ -47,6 +47,12 @@ Route::get('/admin/reuniones/rechazadas', [AdminController::class, 'reunionesRec
     Route::get('admin/usuarios-sin-rol', [AdminController::class, 'showUsersWithoutRole'])
     ->name('admin.SinRol');
 
+
+
+
+
+
+
 });
 
 Route::put('/admin/matriculaciones/{user}/borrar-asignaturas', 

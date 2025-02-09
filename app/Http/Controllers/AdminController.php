@@ -219,4 +219,20 @@ class AdminController extends Controller
     
         return view('admin.SinRol', compact('usersWithoutRoleCount'));
     }
+
+
+
+
+
+    private function assignProfessorSubjects($user)
+    {
+        // Asignar asignaturas al profesor (lógica adicional según tus necesidades)
+        // Puedes agregar la lógica de asignación aquí.
+    }
+    
+    private function assignAdministratorPermissions($user)
+    {
+        // Asignar permisos adicionales a los administradores (si los hay)
+        // Puedes agregar permisos o roles específicos aquí, si lo necesitas.
+    }
 }
